@@ -62,7 +62,7 @@ function buildCharts(sample) {
     
     // 4. Create a variable that filters the samples for the object with the desired sample number.
     var selectedSample = samples.filter(result => result.id == sample);
-    console.log(selectedSample)
+    
     //  5. Create a variable that holds the first sample in the array.
     var sampleObject = selectedSample[0];
     
@@ -72,8 +72,7 @@ function buildCharts(sample) {
     var otuIds = Object.values(sampleObject.otu_ids);
     var otuLabels = Object.values(sampleObject.otu_labels);
     var sampleValues = Object.values(sampleObject.sample_values);
-    console.log(sampleValues);
-    console.log(otuIds);
+   
     
 
     // 7. Create the yticks for the bar chart.
@@ -82,7 +81,7 @@ function buildCharts(sample) {
 
     var topTen = otuIds.slice(0,10).reverse();
     var yticks = topTen.map(label => ("OTU " + label));
-    console.log(yticks);
+    
 
     // // 8. Create the trace for the bar chart. 
     var barData = [{
@@ -99,7 +98,7 @@ function buildCharts(sample) {
      
     };
     
-
+// Create the trace for the bubble chart
     var bubbleData = [{
       x: otuIds,
       y: sampleValues,
@@ -112,14 +111,45 @@ function buildCharts(sample) {
       }
     }];
 
+    // Create the layout for the bubble chart
     var bubbleLayout = {
       title: "Bacteria Cultures Per Sample",
       xaxis: { title: "OTU ID" },
       hovermode: "closest"
     
     };
+    // Create trace for gauge chart
+    var metadata = data.metadata;
+    var resultArray = metadata.filter(sampleObj => sampleObj.id == sample);
+    var result = resultArray[0];
+    var washFreq = result.wfreq;
+    console.log(washFreq);
+
+    var gaugeData = [{
+      domain: { x: [0, 1], y: [0, 1] },
+      value: washFreq,
+      type: "indicator",
+      title: { text: "Belly Button Washing Frequency" },
+      mode: "gauge+number",
+      gauge: {
+        axis: { range: [null, 10] },
+        bar: { color: "black" },
+        bgcolor: "white",
+        bordercolor: "black",
+        steps: [
+          { range: [0, 2], color: "red" },
+          { range: [2, 4], color: "orange" },
+          { range: [4, 6], color: "yellow" },
+          { range: [6, 8], color: "lime" },
+          { range: [8, 10], color: "darkgreen" }]
+        }
+      
+      
+    }];
+
     // 10. Use Plotly to plot the data with the layout. 
   Plotly.newPlot("bar", barData, barLayout); 
   Plotly.newPlot("bubble", bubbleData, bubbleLayout);
+  Plotly.newPlot("gauge", gaugeData);
   });
 }
