@@ -98,7 +98,28 @@ function buildCharts(sample) {
       title: 'Top Ten Bacteria Cultures Found'
      
     };
+    
+
+    var bubbleData = [{
+      x: otuIds,
+      y: sampleValues,
+      text: otuLabels,
+      mode: "markers",
+      marker: {
+        size: sampleValues,
+        color: otuIds,
+        colorscale: 'YlGnBu'
+      }
+    }];
+
+    var bubbleLayout = {
+      title: "Bacteria Cultures Per Sample",
+      xaxis: { title: "OTU ID" },
+      hovermode: "closest"
+    
+    };
     // 10. Use Plotly to plot the data with the layout. 
   Plotly.newPlot("bar", barData, barLayout); 
+  Plotly.newPlot("bubble", bubbleData, bubbleLayout);
   });
 }
