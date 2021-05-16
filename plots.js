@@ -87,7 +87,7 @@ function buildCharts(sample) {
     var barData = [{
       x: sampleValues.slice(0,10).reverse(),
       y: yticks,
-      text: otuLabels,
+      text: otuLabels.reverse(),
       type: "bar",
       orientation: "h"
     }  
@@ -126,13 +126,12 @@ function buildCharts(sample) {
     console.log(washFreq);
 
     var gaugeData = [{
-      domain: { x: [0, 1], y: [0, 1] },
       value: washFreq,
       type: "indicator",
       title: { text: "Belly Button Washing Frequency" },
       mode: "gauge+number",
       gauge: {
-        axis: { range: [null, 10] },
+        axis: { range: [null, 10], nticks: 6 },
         bar: { color: "black" },
         bgcolor: "white",
         bordercolor: "black",
@@ -143,13 +142,15 @@ function buildCharts(sample) {
           { range: [6, 8], color: "lime" },
           { range: [8, 10], color: "darkgreen" }]
         }
-      
-      
-    }];
+      }];
+    var gaugeLayout = {
+      width: 500,
+      height: 400
+    }
 
     // 10. Use Plotly to plot the data with the layout. 
   Plotly.newPlot("bar", barData, barLayout); 
   Plotly.newPlot("bubble", bubbleData, bubbleLayout);
-  Plotly.newPlot("gauge", gaugeData);
+  Plotly.newPlot("gauge", gaugeData, gaugeLayout);
   });
 }
