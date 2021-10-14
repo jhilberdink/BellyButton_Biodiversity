@@ -8,3 +8,7 @@ The purpose of this project is to create a dashboard that allows participants in
 
 The dashboard may be viewed at: [https://jhilberdink.github.io/Visualization-with-JavaScript-and-Plotly/](https://jhilberdink.github.io/Visualization-with-JavaScript-and-Plotly/)
 
+### Technologies Used
+- JavaScript
+- Plotly
+- CSS/HTML
