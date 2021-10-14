@@ -6,4 +6,5 @@ The purpose of this project is to create a dashboard that allows participants in
 - The subject's belly button washing frequency.
 - A scatter plot that shows the full results of the bacteria cultures in the sample.
 
-The dashboard may be viewed at: [https://jhilberdink.github.io/BellyButton_Biodiversity/](https://jhilberdink.github.io/BellyButton_Biodiversity/)
+The dashboard may be viewed at: [https://jhilberdink.github.io/Visualization-with-JavaScript-and-Plotly/](https://jhilberdink.github.io/Visualization-with-JavaScript-and-Plotly/)
+
